@@ -3,12 +3,11 @@ import '../styles/app.css';
 import actions from './actions';
 import state from './state';
 // import view from './components/Counter';
-import view from './components/Stage';
+import { view } from './components/Stage';
 
 const appArgs = [state, actions, view, document.getElementById('app')];
 
 function onMount(main) {
-  const { add, sub } = main;
 
   /**
    * Hyperapp wires your actions so the view is re-rendered every time the state
@@ -18,8 +17,6 @@ function onMount(main) {
    * Here is an example on CodePen: https://codepen.io/selfup/pen/jLMRjO
    */
 
-  setTimeout(add, 1000);
-  setTimeout(sub, 2000);
 }
 
 let main;

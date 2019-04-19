@@ -1,10 +1,11 @@
 import { h } from 'hyperapp';
+import Toybox from './Toybox';
 
-export default () => (
+export const view = (state, actions) => (
     <div>
       <h1>Stage</h1>
       <p>
-          It's blank for now.
+          <Toybox widgets={state.widgets} connections={state.connections} />
       </p>
     </div>
   );
