@@ -14,6 +14,11 @@ const addWidget = widget => {
         toneRef = new Tone.Oscillator();
     break;
 
+    case 'Tone.Noise':
+      console.log('create noise');
+      toneRef = new Tone.Noise();
+    break;
+
     default:
         console.error('unknown widget.type for:', widget);
   }

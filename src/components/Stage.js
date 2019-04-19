@@ -13,6 +13,11 @@ const dummyData = {
         name: 'Oscillator',
         type: 'Tone.Oscillator'
     },
+    {
+      id: 2,
+      name: 'Noise',
+      type: 'Tone.Noise'
+    }
   ],
 
   connections: [
@@ -23,7 +28,15 @@ const dummyData = {
           to: {
               id: 0
           }
-      }
+      },
+      {
+        from: {
+            id: 2
+        },
+        to: {
+            id: 0
+        }
+    }
   ]
 }
 
