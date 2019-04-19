@@ -8,23 +8,6 @@ body {
   font-size: calc(10px + 1vmin);
 }
 
-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-section > * + * {
-  margin-left: 2rem;
-}
-
-button {
-  padding: 0 1rem;
-  border: none;
-  font-size: 2rem;
-  height: 3rem;
-}
-
 h1 {
   font-size: calc(20px + 6vmin);
   margin-top: 0;
@@ -37,3 +20,8 @@ p {
   margin-top: 0;
 }
 
+.debug {
+  font-size: 50%;
+  border: 1px solid black;
+  margin: 16px;
+}

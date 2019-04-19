@@ -54,7 +54,10 @@ const dummyData = {
 }
 
 export const view = (state, actions) => (
-    <div oncreate={() => actions.createNetwork({newWidgets: dummyData.widgets, newConnections: dummyData.connections})} >
+    <div
+      className="stage"
+      oncreate={() => actions.createNetwork({newWidgets: dummyData.widgets, newConnections: dummyData.connections})} 
+    >
       <h1>Stage</h1>
       <p>
           <Toybox 

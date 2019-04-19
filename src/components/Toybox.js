@@ -5,26 +5,39 @@ import Fabric from 'fabric';
 // Our imports
 import { widgetJSON} from '../utils';
 
-const draw = () => {
-  console.log('draw!');
-  const canvas = new fabric.Canvas('c');
+const draw = (widgets, connections) => {
+  if (widgets.length == 0) {
+    console.log('Toybox: nothing to draw!');
+    return;
+  }
 
-  const rect = new fabric.Rect({
-    left: 100,
-    top: 100,
-    fill: 'red',
-    width: 20,
-    height: 20
+  console.log('ready to draw!');
+  const canvas = new fabric.Canvas('toybox-canvas', {
+    width: 1024,
+    height: 768,
+    backgroundColor: '#ddd'
   });
 
-  canvas.add(rect);
+  const size = 100;
+
+  widgets.forEach((widget, index) => {
+    const box = new fabric.Rect({
+      left: size/2 + index * size * 1.5,
+      top: size/2,
+      fill: 'red',
+      width: size,
+      height: size
+    });
+    canvas.add(box);
+  });
+
 }
 
 export default ({widgets, connections, start, stop}) => (
-    <div oncreate={draw()}>
+    <div oncreate={draw(widgets, connections)}>
       <h2>Toybox</h2>
 
-      <div>
+      <div className="debug">
 
         <h3>widgets</h3>
         <code>
@@ -37,12 +50,18 @@ export default ({widgets, connections, start, stop}) => (
         </code>
       </div>
 
-      <canvas id="c"/>
-
       <div>
-          <button onclick={() => start() }>Start</button>
-          <button onclick={() => stop() }>Stop</button>
+
+        <div>
+            <button onclick={() => start() }>Start</button>
+            <button onclick={() => stop() }>Stop</button>
+        </div>
+
+        <canvas id="toybox-canvas"/>
+
       </div>
+
+
     </div>
   );
   
