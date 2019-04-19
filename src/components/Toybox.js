@@ -18,17 +18,22 @@ const draw = (widgets, connections) => {
     backgroundColor: '#ddd'
   });
 
-  const size = 100;
-
   widgets.forEach((widget, index) => {
-    const box = new fabric.Rect({
-      left: size/2 + index * size * 1.5,
-      top: size/2,
-      fill: 'red',
-      width: size,
-      height: size
-    });
-    canvas.add(box);
+    const fabricRef = widget.fabricRef;
+    if (fabricRef) {
+      const width = fabricRef.get('width');
+      fabricRef.left = width/2 + width * index * 1.5;
+      fabricRef.top = width/2;
+      canvas.add(fabricRef);
+    }
+    // const box = new fabric.Rect({
+    //   left: size/2 + index * size * 1.5,
+    //   top: size/2,
+    //   fill: 'red',
+    //   width: size,
+    //   height: size
+    // });
+    // canvas.add(box);
   });
 
 }

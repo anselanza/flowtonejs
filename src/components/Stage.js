@@ -58,7 +58,7 @@ export const view = (state, actions) => (
       className="stage"
       oncreate={() => actions.createNetwork({newWidgets: dummyData.widgets, newConnections: dummyData.connections})} 
     >
-      <h1>Stage</h1>
+      <h1>FlowTone Stage</h1>
       <p>
           <Toybox 
             widgets={state.widgets} connections={state.connections} 

@@ -1,9 +1,12 @@
 import * as Tone from 'tone';
 import { widgetJSON } from '../utils';
 
+import Fabric from 'fabric';
+
 const addWidget = widget => {
   let toneRef;
 
+  // Instantiate ToneJS object, and link as toneRef...
   switch(widget.type) {
     case 'Tone.Master':
         // created on initialisation by ToneJS
@@ -28,9 +31,21 @@ const addWidget = widget => {
         console.error('unknown widget.type for:', widget);
   }
 
+  // Instantiate Fabric object, and link as fabricRef...
+  let fabricRef;
+  const size = 100;
+  fabricRef = new fabric.Rect({
+    left: size/2 + size * 1.5,
+    top: size/2,
+    fill: 'red',
+    width: size,
+    height: size
+  });
+
   return {
     ...widget,
-    toneRef
+    toneRef,
+    fabricRef
   }
 
 }
