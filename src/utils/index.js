@@ -1,0 +1,1 @@
+export const widgetJSON = (widget) => ({ ...widget, toneRef: '_hidden'});

@@ -1,8 +1,7 @@
 import { h } from 'hyperapp';
+import { widgetJSON} from '../utils';
 
 const isMaster = (widget) => widget.type === 'Tone.Master'
-
-const widgetJSON = (widgets) => JSON.stringify(widgets.map(w => ({ ...w, toneRef: '_hidden'})));
 
 export default ({widgets, connections, start, stop}) => (
     <div>
@@ -12,7 +11,7 @@ export default ({widgets, connections, start, stop}) => (
 
         <h3>widgets</h3>
         <code>
-            {widgetJSON(widgets)}
+            {JSON.stringify(widgets.map(w => widgetJSON(w))) }
         </code> 
 
         <h3>connections</h3>

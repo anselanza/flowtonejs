@@ -1,4 +1,5 @@
 import * as Tone from 'tone';
+import { widgetJSON } from '../utils';
 
 const addWidget = widget => {
   let toneRef;
@@ -41,7 +42,11 @@ const addConnection = (connection, widgets) => {
     }
 
   return {
-    ...connection
+    ...connection,
+    meta: {
+      source: widgetJSON(source), 
+      destination: widgetJSON(destination)
+    }
   }
 }
 
