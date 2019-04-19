@@ -1,7 +1,7 @@
 import * as Tone from 'tone';
 
 const addWidget = widget => {
-  let toneObject;
+  let toneRef;
 
   switch(widget.type) {
     case 'Tone.Master':
@@ -10,8 +10,8 @@ const addWidget = widget => {
 
     case 'Tone.Oscillator':
         console.log('create oscillator');
-        toneObject = new Tone.Oscillator();
-        toneObject.toMaster();
+        toneRef = new Tone.Oscillator();
+        toneRef.toMaster();
     break;
 
     default:
@@ -20,7 +20,7 @@ const addWidget = widget => {
 
   return {
     ...widget,
-    toneObject
+    toneObject: toneRef
   }
 
 }
