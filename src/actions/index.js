@@ -70,8 +70,10 @@ export default {
   },
 
   startNetwork: () => ({ widgets }) => {
-    let startableWidgets = widget.filter(widget.start !== undefined);
-    startableWidgets.forEach(w => w.start());
+    let startableWidgets = widgets.filter(w => w.toneObject && w.toneObject.start !== undefined);
+    console.log('found', startableWidgets.length, 'startable widgets...');
+    
+    startableWidgets.forEach(w => w.toneObject.start());
 
     return { ...widgets };
   }
