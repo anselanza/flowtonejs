@@ -1,17 +1,40 @@
 import * as Tone from 'tone';
 
+const addWidget = widget => {
+  let toneObject;
+
+  switch(widget.type) {
+    case 'Tone.Master':
+        // created on initialisation by ToneJS
+    break;
+
+    case 'Tone.Oscillator':
+        console.log('create oscillator');
+        toneObject = new Tone.Oscillator();
+        toneObject.toMaster();
+    break;
+
+    default:
+        console.error('unknown widget.type for:', widget);
+  }
+
+  return {
+    ...widget,
+    toneObject
+  }
+
+}
+
 export default {
   add: (/* event (e) */) => ({ num }) => ({ num: num + 1 }),
   // sub: (/* event (e) */) => ({ num }) => ({ num: num - 1 }),
-
-  addWidget: (newWidget) => ({ widgets }) => ({}),
 
   createNetwork: ({newWidgets, newConnections}) => ({widgets, connections}) => {
 
     console.log(`creating network with ${newWidgets.length} widget(s) and ${newConnections.length} connection(s)...`);
 
     return {
-      ...widgets, 
+      widgets: newWidgets.map(newWidget => addWidget(newWidget)),
       ...connections
     };
 
@@ -44,6 +67,13 @@ export default {
   //           }
   //       }
   //   });
-  } 
+  },
+
+  startNetwork: () => ({ widgets }) => {
+    let startableWidgets = widget.filter(widget.start !== undefined);
+    startableWidgets.forEach(w => w.start());
+
+    return { ...widgets };
+  }
 
 };

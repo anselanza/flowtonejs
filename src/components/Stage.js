@@ -28,11 +28,11 @@ const dummyData = {
 }
 
 export const view = (state, actions) => (
-    <div>
+    <div oncreate={() => actions.createNetwork({newWidgets: dummyData.widgets, newConnections: dummyData.connections})} >
       <h1>Stage</h1>
       <p>
           <Toybox 
-            widgets={dummyData.widgets} connections={dummyData.connections} 
+            widgets={state.widgets} connections={state.connections} 
             createNetwork={actions.createNetwork}
           />
       </p>
