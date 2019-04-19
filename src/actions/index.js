@@ -35,8 +35,6 @@ const addWidget = widget => {
   let fabricRef;
   const size = 100;
   fabricRef = new fabric.Rect({
-    left: size/2 + size * 1.5,
-    top: size/2,
     fill: 'red',
     width: size,
     height: size
