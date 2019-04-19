@@ -11,7 +11,6 @@ const addWidget = widget => {
     case 'Tone.Oscillator':
         console.log('create oscillator');
         toneRef = new Tone.Oscillator();
-        toneRef.toMaster();
     break;
 
     default:
@@ -20,9 +19,30 @@ const addWidget = widget => {
 
   return {
     ...widget,
-    toneObject: toneRef
+    toneRef
   }
 
+}
+
+const isMaster = widget => widget.type === 'Tone.Master';
+
+const addConnection = (connection, widgets) => {
+
+  const source = widgets.find(w => w.id === connection.from.id);
+  const destination = widgets.find(w => w.id === connection.to.id);
+
+    if (destination === undefined || source === undefined) {
+        console.error('cannot find source and/or destination for connection', connection);
+    } else {
+        if (isMaster(destination)) {
+          console.log('destination master; connect', source.name, 'to Tone.Master');
+            source.toneRef.connect(Tone.Master);
+        }
+    }
+
+  return {
+    ...connection
+  }
 }
 
 export default {
@@ -33,9 +53,12 @@ export default {
 
     console.log(`creating network with ${newWidgets.length} widget(s) and ${newConnections.length} connection(s)...`);
 
+    let widgetInstances = newWidgets.map(newWidget => addWidget(newWidget));
+    let connectionInstances = newConnections.map(newConnection => addConnection(newConnection, widgetInstances));
+
     return {
-      widgets: newWidgets.map(newWidget => addWidget(newWidget)),
-      ...connections
+      widgets: widgetInstances,
+      connections: connectionInstances
     };
 
     // widgets.forEach(widget => {
@@ -70,19 +93,19 @@ export default {
   },
 
   startAll: () => ({ widgets }) => {
-    let startableWidgets = widgets.filter(w => w.toneObject && w.toneObject.start !== undefined);
+    let startableWidgets = widgets.filter(w => w.toneRef && w.toneRef.start !== undefined);
     console.log('found', startableWidgets.length, 'startable widgets...');
     
-    startableWidgets.forEach(w => w.toneObject.start());
+    startableWidgets.forEach(w => w.toneRef.start());
 
     return { ...widgets };
   },
 
   stopAll: () => ({ widgets }) => {
-    let stoppableWidgets = widgets.filter(w => w.toneObject && w.toneObject.start !== undefined);
+    let stoppableWidgets = widgets.filter(w => w.toneRef && w.toneRef.start !== undefined);
     console.log('found', stoppableWidgets.length, 'stoppable widgets...');
     
-    stoppableWidgets.forEach(w => w.toneObject.stop());
+    stoppableWidgets.forEach(w => w.toneRef.stop());
 
     return { ...widgets };
   }
