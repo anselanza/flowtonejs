@@ -33,7 +33,7 @@ export const view = (state, actions) => (
       <p>
           <Toybox 
             widgets={state.widgets} connections={state.connections} 
-            start={actions.startNetwork}
+            start={actions.startAll} stop={actions.stopAll}
           />
       </p>
     </div>

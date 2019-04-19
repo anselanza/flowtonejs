@@ -3,7 +3,7 @@ import { h } from 'hyperapp';
 const isMaster = (widget) => widget.type === 'Tone.Master'
 
 
-export default ({widgets, connections, start}) => (
+export default ({widgets, connections, start, stop}) => (
     <div>
       <h2>Toybox</h2>
       <div>
@@ -12,6 +12,7 @@ export default ({widgets, connections, start}) => (
       </div>
       <div>
           <button onclick={() => start() }>Start</button>
+          <button onclick={() => stop() }>Stop</button>
       </div>
     </div>
   );

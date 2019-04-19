@@ -69,11 +69,20 @@ export default {
   //   });
   },
 
-  startNetwork: () => ({ widgets }) => {
+  startAll: () => ({ widgets }) => {
     let startableWidgets = widgets.filter(w => w.toneObject && w.toneObject.start !== undefined);
     console.log('found', startableWidgets.length, 'startable widgets...');
     
     startableWidgets.forEach(w => w.toneObject.start());
+
+    return { ...widgets };
+  },
+
+  stopAll: () => ({ widgets }) => {
+    let stoppableWidgets = widgets.filter(w => w.toneObject && w.toneObject.start !== undefined);
+    console.log('found', stoppableWidgets.length, 'stoppable widgets...');
+    
+    stoppableWidgets.forEach(w => w.toneObject.stop());
 
     return { ...widgets };
   }
