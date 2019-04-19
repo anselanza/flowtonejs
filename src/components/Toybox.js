@@ -1,11 +1,10 @@
 import { h } from 'hyperapp';
 
-const createNetwork = ({ widgets, connections }) => {
-    console.log(`creating network with ${widgets.length} widget(s) and ${connections.length} connection(s)...`);
-}
+const isMaster = (widget) => widget.type === 'Tone.Master'
 
-export default ({widgets, connections}) => (
-    <div oncreate={() => createNetwork({widgets, connections})}>
+
+export default ({widgets, connections, createNetwork}) => (
+    <div oncreate={() => createNetwork({newWidgets: widgets, newConnections: connections})}>
       <h2>Toybox</h2>
       <div>
           <h3>Widgets</h3>
