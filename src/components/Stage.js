@@ -26,29 +26,29 @@ const dummyData = {
   ],
 
   connections: [
-      {
-          from: {
-              id: 1
-          },
-          to: {
-              id: 0
-          }
+    {
+      from: {
+        id: 1
       },
-      {
-        from: {
-            id: 2
-        },
-        to: {
-            id: 3
-        }
+      to: {
+        id: 0
+      }
+    },
+    {
+      from: {
+        id: 2
       },
-      {
-        from: {
-            id: 3
-        },
-        to: {
-            id: 0
-        }
+      to: {
+        id: 3
+      }
+    },
+    {
+      from: {
+        id: 3
+      },
+      to: {
+        id: 0
+      }
     }
   ]
 }
