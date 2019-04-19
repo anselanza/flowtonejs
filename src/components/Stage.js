@@ -17,6 +17,11 @@ const dummyData = {
       id: 2,
       name: 'Noise',
       type: 'Tone.Noise'
+    },
+    {
+      id: 3,
+      name: 'LowPassFilter',
+      type: 'Tone.Filter'
     }
   ],
 
@@ -32,6 +37,14 @@ const dummyData = {
       {
         from: {
             id: 2
+        },
+        to: {
+            id: 3
+        }
+      },
+      {
+        from: {
+            id: 3
         },
         to: {
             id: 0

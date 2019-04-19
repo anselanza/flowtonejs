@@ -19,6 +19,11 @@ const addWidget = widget => {
       toneRef = new Tone.Noise();
     break;
 
+    case 'Tone.Filter':
+      console.log('create filter');
+      toneRef = new Tone.Filter();
+    break;
+
     default:
         console.error('unknown widget.type for:', widget);
   }
@@ -41,8 +46,11 @@ const addConnection = (connection, widgets) => {
         console.error('cannot find source and/or destination for connection', connection);
     } else {
         if (isMaster(destination)) {
-          console.log('destination master; connect', source.name, 'to Tone.Master');
+          console.log('destination master; connect', source.id, 'to Tone.Master');
             source.toneRef.connect(Tone.Master);
+        } else {
+          console.log('connect widget', source.id, 'to widget', destination.id);
+          source.toneRef.connect(destination.toneRef);
         }
     }
 

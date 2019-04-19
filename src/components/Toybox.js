@@ -16,7 +16,7 @@ export default ({widgets, connections, start, stop}) => (
 
         <h3>connections</h3>
         <code>
-            {JSON.stringify(connections)}
+            {JSON.stringify(connections, null, 4)}
         </code>
       </div>
 
