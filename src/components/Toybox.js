@@ -1,10 +1,27 @@
+// Library imports
 import { h } from 'hyperapp';
+import Fabric from 'fabric';
+
+// Our imports
 import { widgetJSON} from '../utils';
 
-const isMaster = (widget) => widget.type === 'Tone.Master'
+const draw = () => {
+  console.log('draw!');
+  const canvas = new fabric.Canvas('c');
+
+  const rect = new fabric.Rect({
+    left: 100,
+    top: 100,
+    fill: 'red',
+    width: 20,
+    height: 20
+  });
+
+  canvas.add(rect);
+}
 
 export default ({widgets, connections, start, stop}) => (
-    <div>
+    <div oncreate={draw()}>
       <h2>Toybox</h2>
 
       <div>
@@ -19,6 +36,8 @@ export default ({widgets, connections, start, stop}) => (
             {JSON.stringify(connections, null, 4)}
         </code>
       </div>
+
+      <canvas id="c"/>
 
       <div>
           <button onclick={() => start() }>Start</button>
